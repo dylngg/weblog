@@ -1,5 +1,5 @@
 languageCode = "en-us"
-baseURL = "weblog/"
+baseURL = "https://dylngg.github.io/weblog/"
 title = "Dylan Gardner Weblog"
 theme = "lithium-tungstate"
 publishDir = "docs"
