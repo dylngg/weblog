@@ -3,29 +3,29 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/my-first-post/</loc>
+    <loc>https://dylngg.github.com/weblog/post/my-first-post/</loc>
     <lastmod>2018-08-12T11:40:57-06:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://dylngg.github.com/weblog/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2018-08-12T11:40:57-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+    <loc>https://dylngg.github.com/weblog/</loc>
     <lastmod>2018-08-12T11:40:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://dylngg.github.com/weblog/post/</loc>
+    <lastmod>2018-08-12T11:40:57-06:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylngg.github.com/weblog/tags/</loc>
     <priority>0</priority>
   </url>
   

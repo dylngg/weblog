@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Dylan Gardner Weblog</title>
-    <link>/post/</link>
+    <link>https://dylngg.github.com/weblog/post/</link>
     <description>Recent content in Posts on Dylan Gardner Weblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Aug 2018 11:40:57 -0600</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylngg.github.com/weblog/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>My First Post</title>
-      <link>/post/my-first-post/</link>
+      <link>https://dylngg.github.com/weblog/post/my-first-post/</link>
       <pubDate>Sun, 12 Aug 2018 11:40:57 -0600</pubDate>
       
-      <guid>/post/my-first-post/</guid>
+      <guid>https://dylngg.github.com/weblog/post/my-first-post/</guid>
       <description> This is a temporary testing post to test my new Hugo powered blog.
 Nothing Interesting Here This is some content
 This is fine </description>
