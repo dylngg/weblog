@@ -1,0 +1,20 @@
+languageCode = "en-us"
+title = "Dylan Gardner Weblog"
+theme = "lithium-tungstate"
+publishDir = "docs"
+enableGitInfo = true
+
+[params]
+    author = "Dylan Gardner"
+    github = "dylngg"
+    rootURL = "https://dylngg.github.io/"
+
+[[menu.main]]
+    name = "Homepage"
+    weight = 20
+    url = "https://dylngg.github.io"
+
+[[menu.main]]
+    name = "Posts"
+    weight = 20
+    url = "/post/"

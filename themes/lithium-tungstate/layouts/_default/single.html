@@ -1,0 +1,33 @@
+{{ partial "header.html" . }}
+<article>
+  <header class="post-header">
+    <h1>{{ .Title }}</h1>
+    <p>
+      {{- if or .Params.author .Site.Params.author -}}
+      <span class="post-desc">
+        {{ .Params.author | default .Site.Params.author }} · {{ end }}
+        {{- .Date.Format "2006.1.2" -}}
+      </span>
+    </p>
+    <div class="hr background-color"></div>
+  </header>
+  <div class="post-container">{{ .Content }}</div> 
+  <footer>
+    {{ if .Params.tags }}
+    <ul>
+      {{ range .Params.tags }}
+      <li><a href="{{$.Site.BaseURL}}tags/{{ . | urlize }}/">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </footer>
+  <div>
+		{{- if .Next }}
+		<a href="{{ .Next.URL }}">&#8592; Prev Post</a>
+		{{- end }}
+		{{- if .Prev }}
+		<a href="{{ .Prev.URL }}">Next Post &#8594;</a>
+		{{- end }}
+  </div>
+</article>
+{{ partial "footer.html" . }}
