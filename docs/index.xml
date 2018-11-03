@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dylan Gardner&#39;s Weblog</title>
+    <title>Dylan Gardner Weblog</title>
     <link>https://dylngg.github.io/weblog/</link>
-    <description>Recent content on Dylan Gardner&#39;s Weblog</description>
+    <description>Recent content on Dylan Gardner Weblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 12 Aug 2018 11:40:57 -0600</lastBuildDate>
     
 	<atom:link href="https://dylngg.github.io/weblog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://dylngg.github.io/weblog/post/my-first-post/</link>
+      <pubDate>Sun, 12 Aug 2018 11:40:57 -0600</pubDate>
+      
+      <guid>https://dylngg.github.io/weblog/post/my-first-post/</guid>
+      <description>So this is where I put stuff.
+Blah This is some content</description>
+    </item>
     
   </channel>
 </rss>
