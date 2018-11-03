@@ -30,6 +30,10 @@
   text-decoration: none !important;
   color: inherit;
 }
+img {
+  max-width: 100%;
+  margin: 0;
+}
 .post-desc {
   color: #8a9fae;
 }

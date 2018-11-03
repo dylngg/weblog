@@ -1,4 +1,3 @@
-baseURL = "https://dylngg.github.io/weblog"
 languageCode = "en-us"
 title = "Dylan Gardner Weblog"
 theme = "lithium-tungstate"
