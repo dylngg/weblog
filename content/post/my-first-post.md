@@ -13,4 +13,4 @@ This is a temporary testing post to test my new Hugo powered blog.
 This is some content
 
 ## This is fine
-![This is fine](/post/images/this-is-fine.jpg)
+![This is fine](/weblog/post/images/this-is-fine.jpg)
