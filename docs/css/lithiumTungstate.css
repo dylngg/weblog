@@ -42,7 +42,7 @@ Colors
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
@@ -65,7 +65,7 @@ Colors
   }
   .full-container {
     padding: 0 0px;
-    max-width: 1000px;
+    max-width: 900px;
   }
 }
 
