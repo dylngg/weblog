@@ -1,8 +1,8 @@
 <a href="{{ .Permalink }}" class="catalogue-item no-link">
   <div class="hr" style="background: linear-gradient(to right, {{ .Params.gradient_left }}, {{ .Params.gradient_right }}) !important;"></div>
-  <h2 class="catalogue-title">{{ .Title }}</h2>
+  <h3 class="catalogue-title">{{ .Title }}</h3>
   <time datetime="{{ .PublishDate }}" class="post-desc catalogue-date">{{ .PublishDate.Format "January 2006" }}</time>
-  
+
   <p class="color-black catalogue-desc">
   {{ if isset .Params "summary" }}{{ .Params.Summary }}{{ else }}{{ .Summary }}{{ end }}
   </p>
