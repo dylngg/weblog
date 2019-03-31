@@ -1,13 +1,7 @@
-# $title
+This is some content. Nothing to see here.
 
-__By Dylan Gardner__ on 3/31/19
+> "A Famous Quote!" - Somebody
 
----
-
-This is a temporary testing post to test my blog.
-
-## Nothing Interesting Here
-This is some content
-
-## This is fine
+## Is this post fine?
 ![This is fine](../resources/images/this-is-fine.jpg)
+Probably not... But I'm just going to keep it anyways.
