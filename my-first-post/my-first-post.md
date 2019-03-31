@@ -1,10 +1,7 @@
----
-title: "My First Post"
-date: 2018-08-12T11:40:57-06:00
-draft: false
-colortheme: "#222c33"
-gradient_left: "#4BB7FB"
-gradient_right: "#F8F40D"
+# $title
+
+__By Dylan Gardner__ on 3/31/19
+
 ---
 
 This is a temporary testing post to test my new Hugo powered blog.

@@ -1,0 +1,12 @@
+* {
+  font-family: sans-serif;
+}
+.main {
+  max-width: 780px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
