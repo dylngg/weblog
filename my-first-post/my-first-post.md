@@ -4,7 +4,7 @@ __By Dylan Gardner__ on 3/31/19
 
 ---
 
-This is a temporary testing post to test my new Hugo powered blog.
+This is a temporary testing post to test my blog.
 
 ## Nothing Interesting Here
 This is some content
