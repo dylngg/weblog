@@ -213,7 +213,7 @@ html {
 body {
   font-size: 1.5em;
   /* currently ems cause chrome bug misinterpreting rems on body element */
-  line-height: 1.6;
+  line-height: 1.4;
   font-weight: 400;
   font-family: "Ubuntu", Ubuntu, "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222c33;
@@ -673,10 +673,10 @@ form {
 /* Misc */
 
 hr {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 2.5rem;
   border-width: 0;
-  border-top: 2px solid #8a9fae;
+  border-top: 1px solid #8a9fae;
 }
 
 .color-bg-white {
