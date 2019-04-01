@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>$title</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500" rel="stylesheet">
+        <link rel="stylesheet" href="../resources/css/lithiumTungstate.css">
+        <link rel="stylesheet" href="../resources/css/style.css">
+        <style>
+            /* Custom article styling */
+            .intro h1 {
+                width: 250px;
+                color: red;
+                color: $primary;
+                background: none;
+                background: -moz-linear-gradient($primary, $secondary);
+                background: -webkit-linear-gradient($primary, $secondary);
+                background: linear-gradient(to right, $primary, $secondary);
+                background-clip: border-box;
+                background-clip: text !important;
+                -moz-background-clip: text !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="main">
+            <section class="header">
+                <h3>Dylan Gardner</h3>
+                <a href="../">Posts</a>
+                <a href="../../">About Me</a>
+            </section>
+            <hr>
+            <section class="intro">
+                <h1>$title</h1>
+                <p class="desc">$desc</p>
+                <span class="date">$date</span>
+            </section>
+            <article>
+
