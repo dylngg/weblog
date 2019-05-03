@@ -1,0 +1,35 @@
+img {
+    max-width: 100%;
+}
+blockquote {
+  font-style: italic;
+  margin-left: 0;
+  padding-left: 2rem;
+  border-left: .75px solid #5D707C;
+}
+.intro h1 {
+  margin-bottom: .5rem;
+}
+.intro {
+  line-height: 1.2;
+  margin-bottom: 3rem;
+}
+.intro hr {
+  max-width: 50px;
+  margin-top: 1rem;
+  margin-left: 0;
+}
+.date {
+  font-size: 16px;
+  font-style: italic;
+}
+.header {
+  padding-bottom: .5rem;
+}
+.header h3 {
+  display: inline;
+  margin-right: 1rem;
+}
+.header a {
+  margin-right: 1rem;
+}

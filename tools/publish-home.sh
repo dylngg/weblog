@@ -14,7 +14,7 @@ for meta in $meta_files; do
     html_file=`dirname $meta | cut -c 4-`/index.html
     cat >> ../index.html <<EOF
     <section class="intro">
-        <a href="$html_file"><h1>$title</h1></a>
+        <a href="$html_file"><h2>$title</h2></a>
         <p class="desc">$desc</p>
         <span class="date">$date</span>
     </section>
