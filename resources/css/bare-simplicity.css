@@ -7,6 +7,10 @@ body {
   font-size: 18px;
   padding: 0 10px;
 }
+code, kbd, pre, samp {
+  background-color: #EEEEEE;
+  padding: 2px;
+}
 h1, h2, h3 {
   color: #222C33;
   line-height: 1.2;
