@@ -2,8 +2,8 @@ body {
   margin: 40px auto;
   max-width: 650px;
   line-height: 1.6;
-  color : #3E4A52;
-  font-family: 'Lato', sans-serif;
+  color: #3E4A52;
+  font-family: sans-serif;
   font-size: 18px;
   padding: 0 10px;
 }
@@ -17,4 +17,19 @@ h1, h2, h3 {
 }
 hr {
   border: .75px solid #5D707C;
+}
+@media (prefers-color-scheme: dark) {
+    * {
+        background-color: #161716;
+        color: #d7d7d8;
+    }
+    code, kbd, pre, samp {
+      background-color: #313231;
+    }
+    h1, h2, h3 {
+        color: #FEFFFE;
+    }
+    hr {
+        border-color: #555555;
+    }
 }
