@@ -1,6 +1,4 @@
 title=My First Post
 author=Dylan Gardner
 date=March 31st, 2019
-desc=This is a <del>temporary</del> testing post to test my blog.
-primary=#ffe000
-secondary=#799f0c
+summary=This is a <del>temporary</del> testing post to test my blog.

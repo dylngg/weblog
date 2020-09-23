@@ -8,14 +8,14 @@ cat $header_file > ../index.html
 for meta in $meta_files; do
     # Process meta into html and put it in index.html
     title="`cat $meta | grep 'title=' | cut -d '=' -f 2`"
-    desc="`cat $meta | grep 'desc=' | cut -d '=' -f 2`"
+    summary="`cat $meta | grep 'summary=' | cut -d '=' -f 2`"
     date="`cat $meta | grep 'date=' | cut -d '=' -f 2`"
     # Make relative to ../ and get index.html
     html_file=`dirname $meta | cut -c 4-`/index.html
     cat >> ../index.html <<EOF
     <section class="intro">
         <h2><a href="$html_file">$title</a></h2>
-        <p class="desc">$desc</p>
+        <p class="summary">$summary</p>
         <span class="date">$date</span>
     </section>
 EOF
