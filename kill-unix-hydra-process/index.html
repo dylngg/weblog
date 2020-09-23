@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Trying to kill a UNIX Hydra Process</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="../resources/css/normalize.css">
+        <link rel="stylesheet" href="../resources/css/bare-simplicity.css">
+        <link rel="stylesheet" href="../resources/css/extra.css">
+    </head>
+    <body>
+        <section class="main">
+            <section class="header">
+                <h3>Dylan Gardner</h3>
+                <a href="../">Posts</a>
+                <a href="../../">About Me</a>
+            </section>
+            <hr>
+            <section class="intro">
+                <h1>Trying to kill a UNIX Hydra Process</h1>
+                <p class="summary">The joys of trying to kill a process that keeps respawning.</p>
+                <span class="date">September 22nd, 2020</span>
+            </section>
+            <article>
+
+<p>Earlier today I was doing some dirty scripting with <code>rsync</code> and <code>ssh</code> where I was attempting to launch an interactive command on a remote machine over SSH, while syncing the temporary files created from that command down to my Macbook. The script looked a little like this:</p>
+<pre><code>#!/bin/bash
+target=&quot;$1&quot;
+remotecmd=&quot;...&quot;
+sync() {
+    while true; do
+        rsync -a &quot;$target:/tmp/.remotecmd/&quot; `pwd`
+        sleep 3
+    done
+}
+
+echo &quot;Spawning off syncing agent...&quot;
+sync &amp;
+
+echo &quot;Launching $remotecmd...&quot;
+ssh -t &quot;$target&quot; &quot;cd /tmp/.remotecmd &amp;&amp; $remotecmd&quot;</code></pre>
+<p>It’s not the prettiest, but you get the gist of it. It worked for my purposes and I continued on my merry way.</p>
+<p>Which brings me to a not too long ago when I was closing out my Terminal sessions for the day and decided I wanted to clean up some of those pesky files that were synced down. A simple <code>rm</code> of the files will do I thought, so I did this:</p>
+<pre><code>$ ls
+tmpfile1
+tmpfile2
+tmpfile3
+$ rm tmpfile1 tmpfile2 tmpfile3</code></pre>
+<p>Then I ran <code>ls</code> again to make sure I got everything:</p>
+<pre><code>$ ls
+tmpfile1
+tmpfile2
+tmpfile3</code></pre>
+<p>Huh? My first instinct without thinking much was just to try harder, so I did that by blindly running <code>rm -f</code>, thinking automatically that of course that’ll fix it.</p>
+<pre><code>$ rm -f tmpfile1 tmpfile2 tmpfile3
+$ ls
+tmpfile1
+tmpfile2
+tmpfile3</code></pre>
+<p>Nope. I then thought about why that might be for a second and realized that I probably accidentally left <code>rsync</code> running in the background when I <code>ctl-c</code>’d my dirty script. Naturally knowing a thing or two about UNIX commands, my quick solution was to use <code>pkill -9</code> to clean up the leftover processes:</p>
+<pre><code>$ pkill -9 -U $UID rsync
+$ rm tmpfile1 tmpfile2 tmpfile3</code></pre>
+<p><em>(The -U flag causes pkill to only kill processes owned by the given UID)</em></p>
+<p>It didn’t work. The strange thing is that the <code>rsync</code> daemons are like Hydra heads—literally reappearing after I kill them!</p>
+<pre><code>$ ps aux | grep rsync
+dylngg           18728   0.0  0.0  4298384    620 s006  U+    now      0:00.00 grep rsync
+root             18669   0.0  0.0  4287656   2696   ??  Ss    5s ago   0:00.01 /opt/bin/daemondo --label=rsyncd --start-cmd ...
+dylngg           18398   0.0  0.0  4298268   2300   ??  S     5s ago   0:00.01 ssh -l pi 10.0.0.3 rsync --server ...
+dylngg           18396   0.0  0.0  4291992   1644   ??  S     5s ago   0:00.01 rsync -a pi@10.0.0.3:/tmp/.remotecmd/ ...</code></pre>
+<p>Perhaps since <code>pkill</code> defaults to matching against the process name, rather than all the arguments, I wasn’t killing everything? I see a <code>ssh ... rsync --server</code> in my <code>ps</code> output, so I tried <code>pkill -f -9 -U $UID rsync</code> and obviously that also didn’t work.</p>
+<p>Okay. I’m starting to get paranoid. I know there’s a thing called <code>rsyncd</code> that does <code>rsync</code> stuff as a root daemon, so maybe that’s it? On my MacBook that’s the <code>/opt/bin/daemondo</code> process in the <code>ps</code> output because I use <a href="https://www.macports.org">MacPorts</a>. (Hint: I literally have no idea what <code>rsyncd</code> does) My solution:</p>
+<pre><code>$ sudo pkill -9 -f rsync
+$ sudo rm -rf tmpfile1 tmpfile2 tmpfile3</code></pre>
+<p>It’s a bit heavy handed since I’ll kill any other <code>rsync</code> processes, but at this point I’m fine with that. <em><a href="https://xkcd.com/149/">sudo</a> certainly has my back right!?</em></p>
+<pre><code>$ ls
+tmpfile1
+tmpfile2
+tmpfile3</code></pre>
+<p>Nope.</p>
+<p><br></p>
+<p>At this point I’m almost at a loss, nearly resigned to letting the all mighty <code>rsync</code> continue to ensure I have garbage on my disk until I reboot the machine and can clean up the mess I have made. That is, until I remembered an important lesson taught to me by a mentor a year or so back: processes in UNIX are hierarchical, meaning they are spawned off by a parent process and when that parent process dies, the now orphan process is inherited by the root of all processes—<code>init</code>. So in my case when my script exits, either <code>init</code> keeps respawning <code>rsync</code> (unlikely) or I have a parent process respawning <code>rsync</code>.</p>
+<p>It’s at this point that I realize that my script is running a <code>sync</code> function in the background without killing it when the main script exits. It dawns on me that perhaps functions in bash can be independent processes when the main process exits. This would mean that on exit the <code>sync</code> function will simply get adopted by <code>init</code> and continue running. Furthermore with my script, attempting to kill <code>rsync</code> will always fail because the parent process—the <code>sync</code> bash function—keeps respawning <code>rsync</code> every 3 seconds after rsync dies! The neat <code>pstree</code> command shows this:</p>
+<pre><code>$ pstree -s rsync
+-+= 00001 root /sbin/launchd
+ |-+- 04722 dylngg /bin/bash ./dirty.sh pi@10.0.0.3
+ | \-+- 20513 dylngg rsync -a pi@10.0.0.3:/tmp/.remotecmd/ ...
+ |   \--- 20516 dylngg ssh -l pi 10.0.0.3 rsync --server ...
+ \-+= 20382 root /opt/bin/daemondo --label=rsyncd --start-cmd ...
+   \--- 20383 root (bash)</code></pre>
+<p><em>(The -s flag filters down the tree to only include rsync and it’s ancestors)</em></p>
+<p>So the super simple and now plainly obvious solution (while still blindly killing all <code>rsync</code> processes) is to do the following:</p>
+<pre><code>$ pkill -9 -f dirty.sh
+$ pkill -9 rsync</code></pre>
+<p>Which fixed the problem! Yay!</p>
+<p>I guess the lesson here is that you should a) reap all your background processes in shell scripts, shells won’t do that for you and b) be wary of the fact that functions in bash scripts can be considered their own processes and also won’t be reaped by the shell when they run in the background and the shell exits. That lesson was quite informative albeit very annoying.</p>
+            </article>
+            <a href="#">goto top;</a>
+        </section>
+    </body>
+</html>
