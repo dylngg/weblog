@@ -7,6 +7,10 @@ body {
   font-size: 18px;
   padding: 0 10px;
 }
+td, th {
+    padding: 5px;
+    text-align: left;
+}
 code, kbd, pre, samp {
   background-color: #EEEEEE;
   padding: 2px;
@@ -20,16 +24,16 @@ hr {
 }
 @media (prefers-color-scheme: dark) {
     * {
-        background-color: #161716;
-        color: #d7d7d8;
+        background-color: #21272B;
+        color: #C9C9C9;
     }
     code, kbd, pre, samp {
-      background-color: #313231;
+      background-color: #2A353D;
     }
     h1, h2, h3 {
         color: #FEFFFE;
     }
     hr {
-        border-color: #555555;
+        border-color: #AAB2B7;
     }
 }
